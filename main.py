@@ -15,7 +15,7 @@ HEADERS = {
     "Accept-Language": "en-US"
 }
 
-TARGET_RATE = 500.94
+TARGET_RATE = 520.94
 
 response = requests.get(URL, headers=HEADERS, timeout=10)
 response.raise_for_status()
