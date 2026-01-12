@@ -33,7 +33,7 @@ if len(tds) < 4:
 rate = round(float(tds[3].get_text(strip=True)), 2)
 print(f"[{datetime.now()}] CAD rate:", rate)
 
-if rate < TARGET_RATE:
+if rate <= TARGET_RATE:
     subject = "CAD Exchange Rate Alert!"
     body = f"CAD rate is now {rate}\n{URL}"
 
