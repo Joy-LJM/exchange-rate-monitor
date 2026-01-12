@@ -7,6 +7,7 @@ from datetime import datetime
 EMAIL = os.getenv("EMAIL_ADDRESS")
 APP_PSW = os.getenv("APP_PSW")
 SMTP_SERVER = os.getenv("SMTP_ADDRESS")
+EMAIL_RECIPIENTS= os.getenv("EMAIL_RECIPIENTS").split(",")
 
 URL = "https://www.cnyrate.com/cmb.html"
 HEADERS = {
@@ -37,7 +38,7 @@ if rate < TARGET_RATE:
     body = f"CAD rate is now {rate}\n{URL}"
 
     email_content = f"""From: {EMAIL}
-To: {EMAIL}
+To: {", ".join(EMAIL_RECIPIENTS)}
 Subject: {subject}
 
 {body}
@@ -48,7 +49,7 @@ Subject: {subject}
         connection.login(EMAIL, APP_PSW)
         connection.sendmail(
             from_addr=EMAIL,
-            to_addrs=EMAIL,
+            to_addrs=EMAIL_RECIPIENTS,
             msg=email_content.encode("utf-8")
         )
 
